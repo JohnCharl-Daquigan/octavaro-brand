@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"content="width=device-width, initial-scale=1.0">
+
+    <title>Octavaro | Luxury Fragrance and Beauty</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com"crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<header class="header">
+
+    <a href="#home" class="logo">
+        Octavaro
+    </a>
+
+
+    <nav class="navbar">
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#products">
+            Products
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+    </nav>
+
+
+    <button class="menu-btn"
+            onclick="toggleMenu()">
+
+        ☰
+
+    </button>
+
+</header>
+
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <p class="small-title">
+            THE ART OF LUXURY
+        </p>
+
+
+        <h1>
+            YOUR STYLE.<br>
+            YOUR STORY.
+        </h1>
+
+
+        <p>
+            Discover our collection of fragrances,
+            fashion, accessories and beauty essentials
+            created for those who appreciate elegance.
+        </p>
+
+
+        <a href="#products"
+           class="gold-btn">
+
+            EXPLORE COLLECTION
+
+        </a>
+
+
+        <button class="rating-btn"
+                onclick="goToRating()">
+
+            RATE YOUR EXPERIENCE
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section id="products"
+         class="products-section">
+
+
+    <div class="section-title">
+
+        <p>
+            DISCOVER
+        </p>
+
+
+        <h2>
+            OUR COLLECTION
+        </h2>
+
+
+        <span></span>
+
+    </div>
+
+
+
+    <!-- Product Categories -->
+
+    <div class="category-container">
+
+
+        <button
+            class="category-btn active"
+            onclick="showCategory('all', this)">
+
+            ALL
+
+        </button>
+
+
+        <button
+            class="category-btn"
+            onclick="showCategory('perfume', this)">
+
+            PERFUME
+
+        </button>
+
+
+        <button
+            class="category-btn"
+            onclick="showCategory('bag', this)">
+
+            BAGS
+
+        </button>
+
+
+        <button
+            class="category-btn"
+            onclick="showCategory('clothes', this)">
+
+            CLOTHES
+
+        </button>
+
+
+        <button
+            class="category-btn"
+            onclick="showCategory('cosmetics', this)">
+
+            COSMETICS
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- Products will be inserted here by JavaScript -->
+
+    <div id="productGrid"
+         class="product-grid">
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about"
+         class="about-section">
+
+
+    <div class="about-image">
+
+        <div class="about-box">
+
+            <span>
+                ✦
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="about-content">
+
+
+        <p class="small-title">
+            OUR STORY
+        </p>
+
+
+        <h2>
+            TIMELESS<br>
+            ELEGANCE
+        </h2>
+
+
+        <p>
+            Octavaro was created for people who
+            believe that style is more than appearance.
+            It is an expression of personality,
+            confidence and individuality.
+        </p>
+
+
+        <p>
+            From sophisticated fragrances to elegant
+            fashion pieces and beauty essentials,
+            every product is carefully selected
+            to become part of your story.
+        </p>
+
+
+        <a href="#contact"
+           class="gold-btn">
+
+            CONTACT US
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= RATINGS ================= -->
+
+<section id="ratings"
+         class="rating-section">
+
+
+    <div class="section-title">
+
+
+        <p>
+            YOUR VOICE MATTERS
+        </p>
+
+
+        <h2>
+            SHARE YOUR EXPERIENCE
+        </h2>
+
+
+        <span></span>
+
+
+        <p>
+            Tell us what you think about our products.
+        </p>
+
+
+    </div>
+
+
+
+    <div class="rating-form">
+
+
+        <input
+            type="text"
+            id="reviewName"
+            placeholder="Your Name"
+        >
+
+
+        <!-- Stars -->
+
+        <div class="stars"
+             id="starContainer">
+
+
+            <span onclick="selectRating(1)">
+                ★
+            </span>
+
+
+            <span onclick="selectRating(2)">
+                ★
+            </span>
+
+
+            <span onclick="selectRating(3)">
+                ★
+            </span>
+
+
+            <span onclick="selectRating(4)">
+                ★
+            </span>
+
+
+            <span onclick="selectRating(5)">
+                ★
+            </span>
+
+
+        </div>
+
+
+
+        <textarea
+            id="reviewText"
+            placeholder="Share your experience..."
+        ></textarea>
+
+
+
+        <button
+            class="gold-btn"
+            onclick="submitReview()">
+
+            SUBMIT REVIEW
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- Reviews appear here -->
+
+    <div id="reviewsContainer"
+         class="reviews-container">
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact"
+         class="contact-section">
+
+
+    <div class="section-title">
+
+
+        <p>
+            GET IN TOUCH
+        </p>
+
+
+        <h2>
+            CONTACT OCTAVARO
+        </h2>
+
+
+        <span></span>
+
+
+    </div>
+
+
+
+    <div class="contact-grid">
+
+
+        <div>
+
+            <h3>
+                EMAIL
+            </h3>
+
+            <p>
+                sales@octavaro.com
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h3>
+                PHONE
+            </h3>
+
+            <p>
+                +63 123 456 7890
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h3>
+                LOCATION
+            </h3>
+
+            <p>
+                Manila, Philippines
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+
+    <h2>
+        Octavaro
+    </h2>
+
+
+    <p>
+        Luxury made personal.
+    </p>
+
+
+
+    <div class="footer-links">
+
+
+        <a href="#home">
+            Home
+        </a>
+
+
+        <a href="#products">
+            Products
+        </a>
+
+
+        <a href="#about">
+            About
+        </a>
+
+
+        <a href="#contact">
+            Contact
+        </a>
+
+
+    </div>
+
+
+
+    <p class="copyright">
+
+        © 2026 OCTAVARO.
+        All Rights Reserved.
+
+    </p>
+
+
+</footer>
+
+
+
+<!-- ================= PRODUCT MODAL ================= -->
+
+<div id="productModal"
+     class="modal">
+
+
+    <div class="modal-content">
+
+
+        <button class="close-btn"
+                onclick="closeModal()">
+
+            ×
+
+        </button>
+
+
+
+        <div class="modal-product">
+
+
+            <img
+                id="modalImage"
+                src=""
+                alt="Product"
+            >
+
+
+
+            <div class="modal-info">
+
+
+                <p id="modalCategory"></p>
+
+
+                <h2 id="modalName"></h2>
+
+
+                <h3 id="modalPrice"></h3>
+
+
+                <p id="modalDescription"></p>
+
+
+
+                <button
+                    class="gold-btn"
+                    onclick="openOrder()">
+
+                    ORDER THIS PRODUCT
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================= ORDER MODAL ================= -->
+
+<div id="orderModal"
+     class="modal">
+
+
+    <div class="modal-content order-content">
+
+
+        <button class="close-btn"
+                onclick="closeOrder()">
+
+            ×
+
+        </button>
+
+
+
+        <h2>
+            PLACE YOUR ORDER
+        </h2>
+
+
+        <p id="orderProduct"></p>
+
+
+
+        <form onsubmit="placeOrder(event)">
+
+
+            <input
+                type="text"
+                id="customerName"
+                placeholder="Full Name"
+                required
+            >
+
+
+            <input
+                type="email"
+                id="customerEmail"
+                placeholder="Email Address"
+                required
+            >
+
+
+            <input
+                type="tel"
+                id="customerPhone"
+                placeholder="Phone Number"
+                required
+            >
+
+
+            <textarea
+                id="customerAddress"
+                placeholder="Complete Delivery Address"
+                required
+            ></textarea>
+
+
+
+            <select
+                id="paymentMethod"
+                required>
+
+
+                <option value="">
+                    Select Payment Method
+                </option>
+
+
+                <option value="Cash on Delivery">
+                    Cash on Delivery
+                </option>
+
+
+                <option value="GCash">
+                    GCash
+                </option>
+
+
+                <option value="Bank Transfer">
+                    Bank Transfer
+                </option>
+
+
+            </select>
+
+
+
+            <input
+                type="number"
+                id="quantity"
+                value="1"
+                min="1"
+                required
+            >
+
+
+
+            <button
+                class="gold-btn"
+                type="submit">
+
+                CONFIRM ORDER
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
