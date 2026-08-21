@@ -1,4 +1,9 @@
+// ===============================
+// OCTAVARO PRODUCT DATA
+// ===============================
+
 const products = [
+
     {
         id: 1,
         name: "Noir Élégance",
@@ -70,6 +75,7 @@ const products = [
         image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa",
         description: "A collection of rich and elegant shades designed for a beautiful finishing touch."
     }
+
 ];
 
 
@@ -82,7 +88,7 @@ let selectedRating = 0;
 
 
 // ===============================
-// SHOW PRODUCTS
+// DISPLAY PRODUCTS
 // ===============================
 
 function displayProducts(category = "all") {
@@ -99,12 +105,19 @@ function displayProducts(category = "all") {
     let filteredProducts;
 
     if (category === "all") {
+
         filteredProducts = products;
+
     } else {
+
         filteredProducts = products.filter(function(product) {
+
             return product.category === category;
+
         });
+
     }
+
 
     filteredProducts.forEach(function(product) {
 
@@ -112,26 +125,42 @@ function displayProducts(category = "all") {
 
         card.className = "product-card";
 
+
         card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
+            <img
+                src="${product.image}"
+                alt="${product.name}"
+            >
 
             <div class="product-info">
-                <small>${product.category.toUpperCase()}</small>
 
-                <h3>${product.name}</h3>
+                <small>
+                    ${product.category.toUpperCase()}
+                </small>
+
+                <h3>
+                    ${product.name}
+                </h3>
 
                 <div class="product-price">
                     ₱${product.price.toLocaleString()}
                 </div>
+
             </div>
         `;
 
+
         card.addEventListener("click", function() {
+
             openProduct(product.id);
+
         });
 
+
         productGrid.appendChild(card);
+
     });
+
 }
 
 
@@ -141,17 +170,26 @@ function displayProducts(category = "all") {
 
 function showCategory(category, button) {
 
-    const buttons = document.querySelectorAll(".category-btn");
+    const buttons =
+        document.querySelectorAll(".category-btn");
+
 
     buttons.forEach(function(btn) {
+
         btn.classList.remove("active");
+
     });
 
+
     if (button) {
+
         button.classList.add("active");
+
     }
 
+
     displayProducts(category);
+
 }
 
 
@@ -162,42 +200,71 @@ function showCategory(category, button) {
 function openProduct(id) {
 
     selectedProduct = products.find(function(product) {
+
         return product.id === id;
+
     });
 
+
     if (!selectedProduct) {
+
         console.error("Product not found.");
+
         return;
+
     }
 
-    const modalImage = document.getElementById("modalImage");
-    const modalCategory = document.getElementById("modalCategory");
-    const modalName = document.getElementById("modalName");
-    const modalPrice = document.getElementById("modalPrice");
-    const modalDescription = document.getElementById("modalDescription");
-    const productModal = document.getElementById("productModal");
 
-    modalImage.src = selectedProduct.image;
-    modalImage.alt = selectedProduct.name;
+    const modalImage =
+        document.getElementById("modalImage");
+
+    const modalCategory =
+        document.getElementById("modalCategory");
+
+    const modalName =
+        document.getElementById("modalName");
+
+    const modalPrice =
+        document.getElementById("modalPrice");
+
+    const modalDescription =
+        document.getElementById("modalDescription");
+
+    const productModal =
+        document.getElementById("productModal");
+
+
+    modalImage.src =
+        selectedProduct.image;
+
+    modalImage.alt =
+        selectedProduct.name;
+
 
     modalCategory.textContent =
         selectedProduct.category.toUpperCase();
 
+
     modalName.textContent =
         selectedProduct.name;
 
+
     modalPrice.textContent =
-        "₱" + selectedProduct.price.toLocaleString();
+        "₱" +
+        selectedProduct.price.toLocaleString();
+
 
     modalDescription.textContent =
         selectedProduct.description;
 
+
     productModal.classList.add("show");
+
 }
 
 
 // ===============================
-// CLOSE PRODUCT
+// CLOSE PRODUCT MODAL
 // ===============================
 
 function closeModal() {
@@ -205,7 +272,13 @@ function closeModal() {
     const productModal =
         document.getElementById("productModal");
 
-    productModal.classList.remove("show");
+
+    if (productModal) {
+
+        productModal.classList.remove("show");
+
+    }
+
 }
 
 
@@ -216,23 +289,33 @@ function closeModal() {
 function openOrder() {
 
     if (!selectedProduct) {
+
         alert("Please select a product first.");
+
         return;
+
     }
+
 
     const orderProduct =
         document.getElementById("orderProduct");
+
 
     orderProduct.textContent =
         selectedProduct.name +
         " — ₱" +
         selectedProduct.price.toLocaleString();
 
+
     closeModal();
 
-    document
-        .getElementById("orderModal")
-        .classList.add("show");
+
+    const orderModal =
+        document.getElementById("orderModal");
+
+
+    orderModal.classList.add("show");
+
 }
 
 
@@ -242,9 +325,16 @@ function openOrder() {
 
 function closeOrder() {
 
-    document
-        .getElementById("orderModal")
-        .classList.remove("show");
+    const orderModal =
+        document.getElementById("orderModal");
+
+
+    if (orderModal) {
+
+        orderModal.classList.remove("show");
+
+    }
+
 }
 
 
@@ -256,10 +346,15 @@ function placeOrder(event) {
 
     event.preventDefault();
 
+
     if (!selectedProduct) {
+
         alert("Please select a product.");
+
         return;
+
     }
+
 
     const name =
         document.getElementById("customerName").value;
@@ -277,51 +372,99 @@ function placeOrder(event) {
         document.getElementById("paymentMethod").value;
 
     const quantity =
-        Number(document.getElementById("quantity").value);
+        Number(
+            document.getElementById("quantity").value
+        );
+
 
     const total =
         selectedProduct.price * quantity;
 
+
     alert(
-        "ORDER RECEIVED!\n\n" +
-        "Customer: " + name + "\n" +
-        "Email: " + email + "\n" +
-        "Phone: " + phone + "\n\n" +
-        "Product: " + selectedProduct.name + "\n" +
-        "Quantity: " + quantity + "\n" +
-        "Total: ₱" + total.toLocaleString() + "\n" +
-        "Payment: " + payment + "\n\n" +
-        "Thank you for shopping with LUXÉ!"
+        "OCTAVARO ORDER RECEIVED!\n\n" +
+
+        "Customer: " +
+        name +
+        "\n" +
+
+        "Email: " +
+        email +
+        "\n" +
+
+        "Phone: " +
+        phone +
+        "\n\n" +
+
+        "Product: " +
+        selectedProduct.name +
+        "\n" +
+
+        "Quantity: " +
+        quantity +
+        "\n" +
+
+        "Total: ₱" +
+        total.toLocaleString() +
+        "\n" +
+
+        "Payment: " +
+        payment +
+        "\n\n" +
+
+        "Delivery Address:\n" +
+        address +
+        "\n\n" +
+
+        "Thank you for shopping with Octavaro!"
     );
 
-    document
-        .querySelector(".order-content form")
-        .reset();
+
+    const form =
+        document.querySelector(".order-content form");
+
+
+    if (form) {
+
+        form.reset();
+
+    }
+
 
     closeOrder();
+
 }
 
 
 // ===============================
-// RATING
+// STAR RATING
 // ===============================
 
 function selectRating(rating) {
 
     selectedRating = rating;
 
+
     const stars =
-        document.querySelectorAll("#starContainer span");
+        document.querySelectorAll(
+            "#starContainer span"
+        );
+
 
     stars.forEach(function(star, index) {
 
         if (index < rating) {
+
             star.classList.add("selected");
+
         } else {
+
             star.classList.remove("selected");
+
         }
 
     });
+
 }
 
 
@@ -332,50 +475,87 @@ function selectRating(rating) {
 function submitReview() {
 
     const name =
-        document.getElementById("reviewName").value.trim();
+        document
+            .getElementById("reviewName")
+            .value
+            .trim();
+
 
     const comment =
-        document.getElementById("reviewText").value.trim();
+        document
+            .getElementById("reviewText")
+            .value
+            .trim();
+
 
     if (name === "") {
+
         alert("Please enter your name.");
+
         return;
+
     }
+
 
     if (selectedRating === 0) {
+
         alert("Please select a star rating.");
+
         return;
+
     }
+
 
     if (comment === "") {
+
         alert("Please write your experience.");
+
         return;
+
     }
 
+
     const review = {
+
         name: name,
+
         rating: selectedRating,
+
         comment: comment
+
     };
 
+
     let reviews =
-        JSON.parse(localStorage.getItem("luxeReviews")) || [];
+        JSON.parse(
+            localStorage.getItem("octavaroReviews")
+        ) || [];
+
 
     reviews.push(review);
 
+
     localStorage.setItem(
-        "luxeReviews",
+        "octavaroReviews",
         JSON.stringify(reviews)
     );
 
+
     document.getElementById("reviewName").value = "";
+
     document.getElementById("reviewText").value = "";
+
 
     selectRating(0);
 
+
     loadReviews();
 
-    alert("Thank you for sharing your experience!");
+
+    alert(
+        "Thank you for sharing your experience with Octavaro!"
+    );
+
 }
 
 
@@ -388,56 +568,81 @@ function loadReviews() {
     const container =
         document.getElementById("reviewsContainer");
 
+
     if (!container) {
+
         return;
+
     }
 
+
     let reviews =
-        JSON.parse(localStorage.getItem("luxeReviews")) || [];
+        JSON.parse(
+            localStorage.getItem("octavaroReviews")
+        ) || [];
+
 
     container.innerHTML = "";
 
-    reviews.slice().reverse().forEach(function(review) {
 
-        const reviewElement =
-            document.createElement("div");
+    reviews
+        .slice()
+        .reverse()
+        .forEach(function(review) {
 
-        reviewElement.className = "review";
 
-        const stars =
-            "★".repeat(review.rating) +
-            "☆".repeat(5 - review.rating);
+            const reviewElement =
+                document.createElement("div");
 
-        reviewElement.innerHTML = `
-            <div class="review-name">
-                ${escapeHTML(review.name)}
-            </div>
 
-            <div class="review-stars">
-                ${stars}
-            </div>
+            reviewElement.className =
+                "review";
 
-            <p>
-                ${escapeHTML(review.comment)}
-            </p>
-        `;
 
-        container.appendChild(reviewElement);
-    });
+            const stars =
+                "★".repeat(review.rating) +
+                "☆".repeat(5 - review.rating);
+
+
+            reviewElement.innerHTML = `
+
+                <div class="review-name">
+                    ${escapeHTML(review.name)}
+                </div>
+
+                <div class="review-stars">
+                    ${stars}
+                </div>
+
+                <p>
+                    ${escapeHTML(review.comment)}
+                </p>
+
+            `;
+
+
+            container.appendChild(reviewElement);
+
+        });
+
 }
 
 
 // ===============================
-// PREVENT HTML IN COMMENTS
+// PROTECT REVIEWS FROM HTML CODE
 // ===============================
 
 function escapeHTML(text) {
 
-    const div = document.createElement("div");
+    const div =
+        document.createElement("div");
+
 
     div.textContent = text;
 
+
     return div.innerHTML;
+
 }
 
 
@@ -450,18 +655,25 @@ function toggleMenu() {
     const navbar =
         document.querySelector(".navbar");
 
-    navbar.classList.toggle("show");
+
+    if (navbar) {
+
+        navbar.classList.toggle("show");
+
+    }
+
 }
 
 
 // ===============================
-// GO TO RATING
+// GO TO RATING SECTION
 // ===============================
 
 function goToRating() {
 
     const ratings =
         document.getElementById("ratings");
+
 
     if (ratings) {
 
@@ -470,11 +682,12 @@ function goToRating() {
         });
 
     }
+
 }
 
 
 // ===============================
-// CLOSE MODALS WHEN CLICKING OUTSIDE
+// CLOSE MODALS BY CLICKING OUTSIDE
 // ===============================
 
 window.addEventListener("click", function(event) {
@@ -485,25 +698,34 @@ window.addEventListener("click", function(event) {
     const orderModal =
         document.getElementById("orderModal");
 
+
     if (event.target === productModal) {
+
         closeModal();
+
     }
+
 
     if (event.target === orderModal) {
+
         closeOrder();
+
     }
 
 });
 
 
 // ===============================
-// START WEBSITE
+// START OCTAVARO WEBSITE
 // ===============================
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
 
-    displayProducts();
+        displayProducts();
 
-    loadReviews();
+        loadReviews();
 
-});
+    }
+);
